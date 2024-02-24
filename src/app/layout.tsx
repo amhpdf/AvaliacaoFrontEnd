@@ -20,13 +20,13 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={inter.className}>
-        <GlobalProvider>
-          <div className='flex flex-col h-screen justify-between'>
+        <div className="flex flex-col min-h-screen">
+          <GlobalProvider>
             <NavBar />
-            {children}
-            <FooterGlobal />
-          </div>
-        </GlobalProvider>
+            <main className="flex-grow">{children}</main>
+          </GlobalProvider>
+          <FooterGlobal />
+        </div>
       </body>
     </html>
   );

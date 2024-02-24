@@ -34,7 +34,6 @@ export const NavBar = () => {
           <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
             {navigation.map((item, idx) => {
               return (
-
                 <Link
                   href={item.path}
                   key={idx}

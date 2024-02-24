@@ -2,7 +2,7 @@ import { CardsServicesContainer } from './CardsServiceContainer';
 
 export const ServiceContainer = () => {
   return (
-    <section className="w-full h-4/6 relative py-36 bg-primary mt-96 ">
+    <section className="w-full h-4/6 relative py-60 bg-primary">
       <div className="relative z-10 max-w-screen-xl mx-auto px-4 text-gray-300 justify-between gap-24 lg:flex md:px-8">
         <div className="max-w-md">
           <h3 className="text-white text-3xl font-semibold sm:text-4xl">
@@ -17,7 +17,7 @@ export const ServiceContainer = () => {
             econômico os seus associados.
           </p>
         </div>
-        <div className="-mt-28">
+        <div className="-mt-52">
           <CardsServicesContainer />
         </div>
       </div>
