@@ -3,16 +3,14 @@
 import { Convenio, ConveniosOrganizados } from '@/@types/Convenios';
 import { api } from '@/service/axiosConfig';
 import { useQuery } from '@tanstack/react-query';
-import { Accordion, Badge } from 'flowbite-react';
-import { useState } from 'react';
+import { Badge } from 'flowbite-react';
 import { Card } from 'flowbite-react';
-import Image from 'next/image';
+import { Skeleton } from '../componentsNoticias/Skeleton';
 
 export const CardsConvenios = () => {
-  const [itensPorInicial, setItensPorInicial] = useState<ConveniosOrganizados>(
-    {},
-  );
-  const getDataNoticias = async (): Promise<Convenio[] | undefined> => {
+  const getDataNoticias = async (): Promise<
+    ConveniosOrganizados | undefined
+  > => {
     try {
       const data = await api.get('/convenios/ativos');
       const itens = data.data;
@@ -26,8 +24,7 @@ export const CardsConvenios = () => {
         itensOrganizados[primeiraLetra].push(item);
       });
 
-      setItensPorInicial(itensOrganizados);
-      return data.data;
+      return itensOrganizados;
     } catch (error) {
       console.error(error);
     }
@@ -38,34 +35,44 @@ export const CardsConvenios = () => {
   });
   return (
     <div className="flex flex-wrap gap-4 w-full justify-center">
-      {Object.entries(itensPorInicial).map(([letra, itens]) => (
-        <Card
-          className={`w-80 drop-shadow-xl shadow-lg shadow-secondary/25 bg-primary flex-grow`}
-          key={letra}
-        >
-          <div className="flex flex-col align-top h-full ">
-            <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
-              {letra}
-            </h5>
-            <div className="flow-root justify-start">
-              <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-                {itens.map((item) => (
-                  <li key={item.id} className="py-3 sm:py-4">
-                    <div className="flex items-center space-x-4">
-                      <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
-                        {item.apelido}
-                      </p>
-                      <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                        <Badge color="success">Ativo</Badge>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </Card>
-      ))}
+      {!isLoading && data ? (
+        <>
+          {Object.entries(data).map(([letra, itens]) => (
+            <Card
+              className={`w-80 drop-shadow-xl shadow-lg shadow-secondary/25 bg-primary flex-grow`}
+              key={letra}
+            >
+              <div className="flex flex-col align-top h-full ">
+                <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
+                  {letra}
+                </h5>
+                <div className="flow-root justify-start">
+                  <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+                    {itens.map((item) => (
+                      <li key={item.id} className="py-3 sm:py-4">
+                        <div className="flex items-center space-x-4">
+                          <p className="truncate text-sm font-medium text-gray-900 dark:text-white">
+                            {item.apelido}
+                          </p>
+                          <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                            <Badge color="success">Ativo</Badge>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </>
+      ) : (
+        <div className="flex flex-wrap gap-4 w-full justify-center">
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
+        </div>
+      )}
     </div>
   );
 };
