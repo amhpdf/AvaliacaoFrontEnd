@@ -6,7 +6,7 @@ import { Tooltip } from 'flowbite-react';
 
 const getDataNoticias = async (): Promise<Noticias[] | undefined> => {
   try {
-    const data = await api.get('/noticias/recentes-home/4');
+    const data = await api.get('/noticias/recentes/8');
     return data.data;
   } catch (error) {
     console.error(error);
@@ -16,18 +16,21 @@ const getDataNoticias = async (): Promise<Noticias[] | undefined> => {
 import { Card } from 'flowbite-react';
 import { Suspense } from 'react';
 import { Skeleton } from './Skeleton';
-export const CardNoticias = () => {
+export const CardNoticiasRecentes = () => {
   const { isLoading, data } = useQuery({
-    queryKey: ['noticiasHome'],
+    queryKey: ['noticiasRecentes'],
     queryFn: () => getDataNoticias(),
   });
 
   return (
     <>
       {isLoading ? (
-        <Skeleton />
+        <div className="flex flex-wrap items-stretch gap-4 ">
+          <Skeleton />
+          <Skeleton />
+        </div>
       ) : (
-        <div className="flex  items-stretch gap-4 ">
+        <div className="flex flex-wrap items-stretch gap-4 justify-center">
           {data?.map((noticia: Noticias) => (
             <Tooltip
               content={noticia.resumo}
@@ -35,7 +38,7 @@ export const CardNoticias = () => {
               animation="duration-500"
             >
               <Card
-                className="w-96 h-full drop-shadow-lg"
+                className="w-96 h-96 drop-shadow-lg transition ease-in-out delay-150 hover:scale-105 hover:shadow-secondary/70"
                 renderImage={() => (
                   <Suspense
                     fallback={

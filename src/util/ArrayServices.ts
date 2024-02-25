@@ -9,7 +9,7 @@ export const ArrayService: CardServices[] = [
     imageURL: '/imagens/pes.jpg',
   },
   {
-    title: ' AMHPTISS',
+    title: 'AMHPTISS',
     description: `Sistema próprio de faturamento, o AMHPTISS – que contempla todas as
     determinações da Agência Nacional de Saúde Suplementar (ANS) e as
     exigências contratuais de cada Operadora de Plano de Saúde.`,
