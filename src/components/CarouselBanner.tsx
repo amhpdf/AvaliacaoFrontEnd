@@ -15,8 +15,10 @@ const getDataBanner = async (): Promise<ImagensBanner[] | undefined> => {
 };
 export const CarouselBanner = () => {
   const SkeletonBanner = () => (
-    <div className="w-full h-32 md:h-96 2xl:h-3/4 bg-slate-600 animate-pulse absolute inset-x-0 top-2"></div>
+    <div className="w-full h-32 md:h-96 2xl:h-3/4 bg-slate-600 animate-pulse"></div>
   );
+
+  const isMobile = window?.innerWidth < 640;
 
   const { isLoading, data } = useQuery({
     queryKey: ['imagensBanner'],
@@ -24,7 +26,7 @@ export const CarouselBanner = () => {
   });
 
   return (
-    <div className="mt-10 h-96">
+    <div className="mt-5 md:mt-10 h-96 ">
       {isLoading ? (
         <SkeletonBanner />
       ) : (
@@ -33,7 +35,7 @@ export const CarouselBanner = () => {
             // eslint-disable-next-line @next/next/no-img-element
             <img
               key={image.id}
-              src={image.urlImagemDesktop}
+              src={isMobile ? image.urlImagemMobile : image.urlImagemDesktop}
               alt={image.titulo}
               className="w-full"
             />

@@ -59,8 +59,10 @@ export const FooterGlobal = () => {
           00.735.860/0001-73 © Copyright 2024 Associação dos Médicos de
           Hospitais Privados do DF - Todos os direitos reservados.
         </p>
-        <div className="mt-8 items-center justify-between sm:flex">
-          <div className="mt-4 sm:mt-0">&copy; 2024 Rafael de Almeida.</div>
+        <div className="mt-8 items-center justify-center sm:flex">
+          <div className="mt-4 sm:mt-0 items-center">
+            &copy; 2024 Rafael de Almeida.
+          </div>
         </div>
       </div>
     </footer>

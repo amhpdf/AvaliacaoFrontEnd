@@ -3,7 +3,7 @@ import { CardService } from './CardService';
 
 export const CardsServicesContainer = () => {
   return (
-    <div className="flex gap-2 flex-wrap h-96 w-full">
+    <div className="flex gap-2 flex-wrap h-96 w-full justify-center">
       {ArrayService.map((service) => (
         <CardService
           title={service.title}

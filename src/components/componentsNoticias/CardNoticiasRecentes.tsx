@@ -30,7 +30,7 @@ export const CardNoticiasRecentes = () => {
           <Skeleton />
         </div>
       ) : (
-        <div className="flex flex-wrap items-stretch gap-4 ">
+        <div className="flex flex-wrap items-stretch gap-4 justify-center">
           {data?.map((noticia: Noticias) => (
             <Tooltip
               content={noticia.resumo}
@@ -38,7 +38,7 @@ export const CardNoticiasRecentes = () => {
               animation="duration-500"
             >
               <Card
-                className="w-96 h-96 drop-shadow-lg"
+                className="w-96 h-96 drop-shadow-lg transition ease-in-out delay-150 hover:scale-105 hover:shadow-secondary/70"
                 renderImage={() => (
                   <Suspense
                     fallback={
