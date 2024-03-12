@@ -1,3 +1,19 @@
+# Como rodar o projeto?
+
+## Primeiro, execute o servidor de desenvolvimento:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Abra [http://localhost:3000](http://localhost:3000) com seu navegador e visualize o resultado.
+
 # Teste Prático Desenvolvedor Front-end
 
 Este repositório foi criado com intuito de disponibilizar os pré-requisitos e o teste prático para se tornar um **Desenvolvedor Front-end** da AMHP.
